@@ -20,7 +20,7 @@ metadata:
     argocd/app-name: control-app
 spec:
   type: service
-  owner: dtuite
+  owner: jussi
   lifecycle: experimental
   providesApis:
     - sample-service
