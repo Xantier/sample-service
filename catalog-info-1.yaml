@@ -23,10 +23,11 @@ metadata:
     backstage.io/kubernetes-id: sample-service
     travis-ci.com/repo-slug: RoadieHQ/sample-service
     backstage.io/kubernetes-label-selector: 'app.kubernetes.io/name=sample-service'
+    opsgenie.com/component-selector: sample-service-1
     qameta.io/allure-project: value
 spec:
   type: service
-  owner: engineering
+  owner: sample-team
   lifecycle: experimental
   system: sample-system
   providesApis:
@@ -34,6 +35,7 @@ spec:
   dependsOn:
     - Component:sample-service-2
     - Resource:sample-s3-bucket
+
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -44,9 +46,10 @@ metadata:
 spec:
   type: library
   lifecycle: production
-  owner: engineering
+  owner: sample-team
   system: sample-system
   subcomponentOf: sample-service-1
+
 ---
 apiVersion: backstage.io/v1alpha1
 kind: API
@@ -59,10 +62,11 @@ metadata:
 spec:
   type: openapi
   lifecycle: production
-  owner: engineering
+  owner: sample-team
   system: sample-system
   definition:
     $text: https://github.com/RoadieHQ/sample-service/blob/main/api-spec.yaml
+
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Resource
@@ -71,8 +75,9 @@ metadata:
   description: The s3 bucket with the sample data in it. Doesn't really exist.
 spec:
   type: s3-bucket
-  owner: engineering
+  owner: sample-team
   system: sample-system
+
 ---
 apiVersion: backstage.io/v1alpha1
 kind: System
@@ -81,8 +86,9 @@ metadata:
   name: sample-system
   description: Sample things which are good for demoing.
 spec:
-  owner: engineering
+  owner: sample-team
   domain: demos
+
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Domain
@@ -90,9 +96,10 @@ metadata:
   name: demos
   description: Collection of stuff for demos
 spec:
-  owner: roadie
+  owner: sample-team
+
 ---
-apiVersion: backstage.io/v1beta2
+apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 # some metadata about the template itself
 metadata:
@@ -100,7 +107,7 @@ metadata:
   title: Log something for demo
   description: All it does is log things. We should really invest in a better demo.
 spec:
-  owner: roadie
+  owner: sample-team
   type: service
 
   # these are the steps which are rendered in the frontend with the form input
@@ -120,4 +127,21 @@ spec:
       name: Log a hello world
       action: debug:log
       input:
-        message: "Hello, {{ parameters.name }}"
+        message: "Hello, ${{ parameters.name }}"
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: yaml-team
+  title: YAML team
+  description: A team which is defined in YAML
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+spec:
+  type: team
+  profile:
+    displayName: YAML team
+    email: team-alpha@example.com
+    picture: https://avatars.dicebear.com/api/identicon/team-alpha@example.com.svg?background=%23fff&margin=25
+  children: []
