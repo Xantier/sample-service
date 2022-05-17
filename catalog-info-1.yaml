@@ -144,3 +144,18 @@ spec:
     email: team-alpha@example.com
     picture: https://avatars.dicebear.com/api/identicon/team-alpha@example.com.svg?background=%23fff&margin=25
   children: []
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: roadie-backstage-admin
+  title: Admin Group
+  description: Admin Group
+spec:
+  type: team
+  profile:
+    displayName: Admin Group
+    email: team-alpha@example.com
+    picture: https://avatars.dicebear.com/api/identicon/team-alpha@example.com.svg?background=%23fff&margin=25
+  children: []
