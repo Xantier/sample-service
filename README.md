@@ -1,5 +1,7 @@
 ![alt-text](docs/assets/headline.png "CC BY-NC-SA 4.0")
 
+[![Link to backstage in Backstage, Component: backstage](https://roadie.roadie.so/api/badges/entity/default/component/backstage/badge/pingback "Link to backstage in Backstage")](https://roadie.roadie.so/catalog/default/component/backstage)
+
 ## Test docs link
 - [Features testing](docs/feature-testing.md) - Features testing
 - [Absolute link](https://roadie.roadie.so/docs/default/Component/sample-service-2/feature-testing/) - Absolute link to another page
