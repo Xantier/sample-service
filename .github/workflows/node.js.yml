@@ -8,6 +8,12 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      debugMsg:
+        description: 'Debug Message'
+        required: false
+        default: 'Printing default Debug message, no input provided'
 
 jobs:
   build:
@@ -24,6 +30,11 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+
+    - name: 'Print debug message'
+      shell: bash
+      run: |
+        echo "${{ inputs.debugMsg }}"
 
     - uses:  RoadieHQ/backstage-entity-validator@v0.1.0
       with:
