@@ -6,26 +6,41 @@ metadata:
   title: Hello World
   description: scaffolder Hello, World template demo
 spec:
-  owner: backstage/techdocs-core
-  type: service
+  owner: guest
+  type: api
 
   parameters:
-    - title: Fill in some steps
-      required:
-        - name
+    - title: Tell us about your project?
       properties:
-        name:
-          title: Name
+        repoSelectWorking:
           type: string
-          description: Name of new project
-          ui:autofocus: true
+          ui:field: SelectFieldFromApi
           ui:options:
-            rows: 5
+            title: Which repository to update
+            description: Select the repository component to update
+            path: catalog/entities/by-query
+            params:
+              filter: "kind=component,metadata.tags.serverless-typescript,relations.ownedBy=group:{{ identity.entity.spec.memberOf | default(['group1', 'group2']) | join(',relations.ownedBy=group:') }}"
+              fields: "kind,metadata.annotations"
+              limit: "1000"
+            arraySelector: items
+            valueSelector: metadata.annotations["github.com/project-slug"]
+        repoSelectBroken:
+          type: string
+          ui:field: SelectFieldFromApi
+          ui:options:
+            title: Which repository to update
+            description: Select the repository component to update
+            path: catalog/entities/by-query
+            params:
+              filter: "kind=component,metadata.tags.serverless-typescript,relations.ownedBy=group:{{ identity.entity.spec.memberOf | join(',relations.ownedBy=group:') }}"
+              fields: "kind,metadata.annotations"
+              limit: "1000"
+            arraySelector: items
+            valueSelector: metadata.annotations["github.com/project-slug"]
 
-  # here's the steps that are executed in series in the scaffolder backend
   steps:
-    - id: log-message
-      name: Log Message
-      action: debug:log
+    - action: debug:log
       input:
-        message: "Hello, ${{ parameters.name }}"
+        message: "User entity groups"
+        extra: ${{ user.entity.spec.memberOf }}
