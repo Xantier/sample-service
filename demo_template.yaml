@@ -33,7 +33,7 @@ spec:
             description: Select the repository component to update
             path: catalog/entities/by-query
             params:
-              filter: "kind=component,metadata.tags.serverless-typescript,relations.ownedBy=group:{{ identity.entity.spec.memberOf | join(',relations.ownedBy=group:') }}"
+              filter: "kind=component,metadata.tags.serverless-typescript,relations.ownedBy=group:{{ identity.ownershipEntityRefs | join(',relations.ownedBy=group:') }}"
               fields: "kind,metadata.annotations"
               limit: "1000"
             arraySelector: items
