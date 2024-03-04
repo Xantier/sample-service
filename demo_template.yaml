@@ -20,20 +20,7 @@ spec:
             description: Select the repository component to update
             path: catalog/entities/by-query
             params:
-              filter: "kind=component,metadata.tags.serverless-typescript,relations.ownedBy=group:{{ identity.userEntityRef }}"
-              fields: "kind,metadata.annotations"
-              limit: "1000"
-            arraySelector: items
-            valueSelector: metadata.annotations["github.com/project-slug"]
-        repoSelectBroken:
-          type: string
-          ui:field: SelectFieldFromApi
-          ui:options:
-            title: Which repository to update
-            description: Select the repository component to update
-            path: catalog/entities/by-query
-            params:
-              filter: "kind=component,metadata.tags.serverless-typescript,relations.ownedBy=group:{{ identity.ownershipEntityRefs | join(',relations.ownedBy=group:') }}"
+              filter: "kind=component,metadata.tags.serverless-typescript,relations.ownedBy={{ identity.userEntityRef }}"
               fields: "kind,metadata.annotations"
               limit: "1000"
             arraySelector: items
