@@ -11,6 +11,7 @@ metadata:
     shortcut.com/project-id: '14'
     github.com/public-repository: Public
     github.com/project-slug: roadiehq/sample-service
+    argocd/app-name: guestbook 
 spec:
   type: service
   owner: irma
