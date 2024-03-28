@@ -1,0 +1,21 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: jussi-test-service
+  title: Jussi Test service
+  description: |
+    A service for testing Backstage functionality. Cofigured for Bugsnag.
+  annotations:
+    bugsnag.com/project-key: RoadieHQ/93b71ec25fd3e1d803af87d57cea2acd
+    bugsnag.com/project-name: Test bugsnag app
+    shortcut.com/project-id: '14'
+    github.com/public-repository: Public
+    github.com/project-slug: xantier/sample-service
+    argocd/app-name: guestbook 
+spec:
+  type: service
+  owner: xantier
+  lifecycle: experimental
+  system: sample-system
+  providesApis:
+    - test-service
