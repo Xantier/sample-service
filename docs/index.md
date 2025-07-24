@@ -17,3 +17,20 @@ Backstage solves this problem by co-locating documentation with the service it i
 your docs-as-code in whatever format you like ([MkDocs](https://www.mkdocs.org/) is currently
 supported out of the box), publish it whereever you like, and Backstage will display it in context
  where it is easy to find.
+
+
+
+# Test mkdocs-charts-plugin
+
+```vegalite
+{
+  "description": "A simple bar chart with embedded data.",
+  "data": {"url" : "assets/charts/data/basic_bar_chart.json"},
+  "mark": {"type": "bar", "tooltip": true},
+  "encoding": {
+    "x": {"field": "a", "type": "nominal", "axis": {"labelAngle": 0}},
+    "y": {"field": "b", "type": "quantitative"}
+  }
+}
+```
+
