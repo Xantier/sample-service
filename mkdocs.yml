@@ -11,8 +11,21 @@ nav:
     - mycomponent: '!include ./sub-dir-documentation/mkdocs.yml'
 
 docs_dir: docs
+
 plugins:
+  - search
+  - charts
+  - techdocs-core
   - monorepo
-  
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/vega@5
+  - https://cdn.jsdelivr.net/npm/vega-lite@5
+  - https://cdn.jsdelivr.net/npm/vega-embed@6
+
 markdown_extensions:
-  - markdown_inline_mermaid
+  - pymdownx.superfences:
+      custom_fences:
+        - name: vegalite
+          class: vegalite
+          format: !!python/name:mkdocs_charts_plugin.fences.fence_vegalite
+
